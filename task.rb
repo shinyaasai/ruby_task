@@ -73,9 +73,9 @@ def q8
   programming_languages = %w(ruby php python javascript)
 
   # 以下に回答を記載
-  p programming_languages.map{|language| language.capitalize}
-  upper_case_programming_languages = programming_languages.map{|language| language.upcase}
-  p upper_case_programming_languages
+  p programming_languages.map!(&:capitalize)
+  p upper_case_programming_languages = programming_languages.map!( &:upcase )
+
 
 end
 
@@ -159,6 +159,8 @@ def q15
   p data2.has_key?(:age) ? "OK"  :  "NG"
 end
 
+## Q16. 次の配列の各要素について，「私の名前は〜です。年齢は〜歳です。」と表示して下さい。
+
 def q16
   users = [
     { name: "satou", age: 22 },
@@ -168,12 +170,25 @@ def q16
   ]
 
   # 以下に回答を記載
-
+  users.each do |user|
+    puts "私の名前は#{user[:name]}です。年齢は#{user[:age]}歳です"
+  end
 end
 
 class UserQ17
   # 以下に回答を記載
-
+  def initialize(user)
+    @name = user[:name]
+    @age = user[:age]
+    @gender = user[:gender]
+    @admin = user[:admin]
+  end
+  def info
+    puts "名前 : #{@name}"
+    puts "年齢 : #{@age}"
+    puts "性別 : #{@gender}"
+    puts "管理者権限 : #{@admin ? "有り" : "無し"}"
+  end
 end
 
 def q17
@@ -188,7 +203,18 @@ end
 
 class UserQ18
   # 以下に回答を記載
+  def initialize(user)
+    @name = user[:name]
+    @age = user[:age]
+  end
 
+  def introduce
+    if @age == 32
+      puts "こんにちは，#{@name}と申します。宜しくお願いいたします。"
+    else
+      puts "はいさいまいど〜，#{@name}です！！！"
+    end
+  end
 end
 
 def q18
@@ -199,6 +225,7 @@ def q18
   puts user1.introduce
   puts user2.introduce
 end
+
 
 class Item
   # 以下を修正して下さい
